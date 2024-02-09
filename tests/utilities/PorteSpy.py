@@ -2,7 +2,7 @@ from src.IPorte import IPorte
 
 class PorteSpy(IPorte):
 
-    def __init__(self, methode_ouvrir_appelee):
+    def __init__(self, methode_ouvrir_appelee=False):
         self._methode_ouvrir_appelee = methode_ouvrir_appelee
 
     @property

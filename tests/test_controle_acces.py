@@ -1,5 +1,6 @@
 import unittest
-from utilities import LecteurFake, PorteSpy
+from utilities.LecteurFake import LecteurFake
+from utilities.PorteSpy import PorteSpy
 from src.MoteurOuverture import MoteurOuverture
 
 
@@ -12,6 +13,7 @@ class TestMain(unittest.TestCase):
         # ET une porte lui étant liée
         porte = PorteSpy()
         # QUAND le moteur d'ouverture interroge ce lecteur
-        MoteurOuverture.interroger(lecteur)
+        moteur = MoteurOuverture(porte)
+        moteur.interroger(lecteur)
         # ALORS cette porte s'ouvre
-        self.assertTrue(porte.methode_ouvrir_appelee())
+        self.assertTrue(porte.methode_ouvrir_appelee)
