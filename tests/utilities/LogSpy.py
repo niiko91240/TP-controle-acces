@@ -13,5 +13,6 @@ class LogSpy(ILog):
     def create_log(self, lecteur, statut):
         self.log.append({
             'lecteur_id': lecteur.id,
+            'badge_id': lecteur._badge_id,
             'statut': statut
         })
