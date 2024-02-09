@@ -79,3 +79,16 @@ class TestMain(unittest.TestCase):
         moteur.interroger([lecteur1, lecteur2])
         # ALORS ces portes s'ouvrent
         self.assertEqual(1, porte.nb_appels_methode_ouvrir)
+
+    def test_detecter_badge_bloque(self):
+        # ETANT DONNE un lecteur ayant détecté un badge bloqué
+        lecteur = LecteurFake()
+        lecteur.bloquer()
+        lecteur.simuler_presentation_badge()
+        # ET une porte lui étant liée
+        porte = PorteSpy()
+        moteur = MoteurOuverture(porte)
+        # QUAND le moteur d'ouverture interroge ce lecteur
+        moteur.interroger(lecteur)
+        # ALORS cette porte ne s'ouvre pas
+        self.assertEqual(0, porte.nb_appels_methode_ouvrir)
