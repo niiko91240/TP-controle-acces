@@ -16,7 +16,7 @@ class TestMain(unittest.TestCase):
         moteur = MoteurOuverture(porte)
         moteur.interroger(lecteur)
         # ALORS cette porte s'ouvre
-        self.assertTrue(porte.methode_ouvrir_appelee)
+        self.assertEqual(1, porte.nb_appels_methode_ouvrir)
 
     def test_cas_sans_interrogation(self):
         # ETANT DONNE un lecteur ayant détecté un badge
@@ -27,7 +27,7 @@ class TestMain(unittest.TestCase):
         # QUAND le moteur d'ouverture interroge ce lecteur
         moteur = MoteurOuverture(porte)
         # ALORS cette porte ne s'ouvre pas
-        self.assertFalse(porte.methode_ouvrir_appelee)
+        self.assertEqual(0, porte.nb_appels_methode_ouvrir)
 
     def test_cas_sans_presentation_badge(self):
         # ETANT DONNE un lecteur
@@ -38,7 +38,7 @@ class TestMain(unittest.TestCase):
         moteur = MoteurOuverture(porte)
         moteur.interroger(lecteur)
         # ALORS cette porte ne s'ouvre pas
-        self.assertFalse(porte.methode_ouvrir_appelee)
+        self.assertEqual(0, porte.nb_appels_methode_ouvrir)
 
     def test_cas_2_presentation(self):
         # ETANT DONNE un lecteur ayant detecté un badge
