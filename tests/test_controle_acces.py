@@ -28,3 +28,13 @@ class TestMain(unittest.TestCase):
         moteur = MoteurOuverture(porte)
         # ALORS cette porte ne s'ouvre pas
         self.assertFalse(porte.methode_ouvrir_appelee)
+
+    def test_cas_sans_presentation_badge(self):
+        # ETANT DONNE un lecteur
+        lecteur = LecteurFake()
+        # ET une porte lui étant liée
+        porte = PorteSpy()
+        # QUAND le moteur d'ouverture interroge ce lecteur
+        moteur = MoteurOuverture(porte)
+        # ALORS cette porte ne s'ouvre pas
+        self.assertFalse(porte.methode_ouvrir_appelee)
