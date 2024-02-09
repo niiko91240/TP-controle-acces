@@ -174,4 +174,4 @@ class TestMain(unittest.TestCase):
         # QUAND le moteur d'ouverture interroge ce lecteur
         moteur.interroger([lecteur])
         # ALORS le log renvoit l'id du badge passé dans la fonction simuler presentation badge
-        self.assertEqual(datetime.now(), moteur._logs.log[-1]['horodatage'])
+        self.assertEqual(datetime.now().strftime("%d/%m/%Y - %H:%M"), moteur._logs.log[-1]['horodatage'])

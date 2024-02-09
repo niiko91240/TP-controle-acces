@@ -12,6 +12,7 @@ class LogSpy(ILog):
 
     def create_log(self, lecteur, statut):
         self.log.append({
+            'horodatage': datetime.now().strftime("%d/%m/%Y - %H:%M"),
             'lecteur_id': lecteur.id,
             'badge_id': lecteur._badge_id,
             'statut': statut
