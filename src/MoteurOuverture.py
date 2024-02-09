@@ -9,7 +9,7 @@ class MoteurOuverture:
     def interroger(self, lecteurs):
         for lecteur in lecteurs:
             if lecteur.badge_detecte and not lecteur.badge_bloque:
-                self._logs.create_log('ok')
+                self._logs.create_log(lecteur, 'ok')
                 for porte in self._portes:
                     porte.ouvrir()
             else:

@@ -11,3 +11,8 @@ class ILecteur(ABC):
     @abstractmethod
     def badge_bloque(self) -> bool:
         pass
+
+    @property
+    @abstractmethod
+    def id(self) -> int:
+        pass

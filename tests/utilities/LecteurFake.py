@@ -2,10 +2,11 @@ from src.ILecteur import ILecteur
 
 class LecteurFake(ILecteur):
 
-    def __init__(self, badge_detecte=False, badge_detecte_prochain_appel=False, badge_bloque=False):
+    def __init__(self, id, badge_detecte=False, badge_detecte_prochain_appel=False, badge_bloque=False):
         self._badge_detecte = badge_detecte
         self._badge_detecte_prochain_appel = badge_detecte_prochain_appel
         self._badge_bloque = badge_bloque
+        self._id = id
 
 
     @property
@@ -17,6 +18,10 @@ class LecteurFake(ILecteur):
     @property
     def badge_bloque(self):
         return self._badge_bloque
+
+    @property
+    def id(self):
+        return self._id
 
     def simuler_presentation_badge(self):
         self._badge_detecte_prochain_appel = True
