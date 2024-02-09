@@ -206,3 +206,18 @@ class TestMain(unittest.TestCase):
         moteur.interroger([lecteur])
         # ALORS le log renvoit l'id du badge passé dans la fonction simuler presentation badge
         self.assertEqual(datetime.now().strftime("%d/%m/%Y - %H:%M"), moteur._logs.log[-1]['horodatage'])
+
+    def test_detecter_badge_log_horodatage_ko(self):
+        # ETANT DONNE un lecteur ayant détecté un badge bloqué
+        lecteur = LecteurFake(1)
+        lecteur.simuler_presentation_badge(1)
+        lecteur.bloquer()
+        log = LogSpy()
+        # ET une porte lui étant liée
+        porte = PorteSpy()
+        moteur = MoteurOuverture(log, porte)
+        # QUAND le moteur d'ouverture interroge ce lecteur
+        moteur.interroger([lecteur])
+        # ALORS le log renvoit l'id du badge
+        self.assertEqual(datetime.now().strftime("%d/%m/%Y - %H:%M"), moteur._logs.log[-1]['horodatage'])
+        self.assertEqual('ko', moteur._logs.log[-1]['statut'])
