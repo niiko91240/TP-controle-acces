@@ -13,4 +13,4 @@ class MoteurOuverture:
                 for porte in self._portes:
                     porte.ouvrir()
             else:
-                self._logs.create_log('ko')
+                self._logs.create_log(lecteur, 'ko')
