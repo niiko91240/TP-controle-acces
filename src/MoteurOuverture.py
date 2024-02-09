@@ -7,6 +7,6 @@ class MoteurOuverture:
 
     def interroger(self, lecteurs):
         for lecteur in lecteurs:
-            if lecteur.badge_detecte:
+            if lecteur.badge_detecte and not lecteur.badge_bloque:
                 for porte in self._portes:
                     porte.ouvrir()

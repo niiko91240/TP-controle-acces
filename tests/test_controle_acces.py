@@ -89,6 +89,6 @@ class TestMain(unittest.TestCase):
         porte = PorteSpy()
         moteur = MoteurOuverture(porte)
         # QUAND le moteur d'ouverture interroge ce lecteur
-        moteur.interroger(lecteur)
+        moteur.interroger([lecteur])
         # ALORS cette porte ne s'ouvre pas
         self.assertEqual(0, porte.nb_appels_methode_ouvrir)
