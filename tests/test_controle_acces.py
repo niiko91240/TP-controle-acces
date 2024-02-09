@@ -148,3 +148,16 @@ class TestMain(unittest.TestCase):
         moteur.interroger([lecteur])
         # ALORS le log renvoit l'id du lecteur
         self.assertEqual(lecteur.id, moteur._logs.log[-1]['lecteur_id'])
+
+    def test_detecter_badge_log_id_badge(self):
+        # ETANT DONNE un lecteur ayant détecté un badge non bloqué
+        lecteur = LecteurFake(1)
+        lecteur.simuler_presentation_badge(1)
+        log = LogSpy()
+        # ET une porte lui étant liée
+        porte = PorteSpy()
+        moteur = MoteurOuverture(log, porte)
+        # QUAND le moteur d'ouverture interroge ce lecteur
+        moteur.interroger([lecteur])
+        # ALORS le log renvoit l'id du badge passé dans la fonction simuler presentation badge
+        self.assertEqual(1, moteur._logs.log[-1]['badge_id'])
