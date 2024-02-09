@@ -1,7 +1,9 @@
 import unittest
 from utilities.LecteurFake import LecteurFake
 from utilities.PorteSpy import PorteSpy
+from utilities.LogSpy import LogSpy
 from src.MoteurOuverture import MoteurOuverture
+from src.ILog import ILog
 
 
 class TestMain(unittest.TestCase):
@@ -111,10 +113,11 @@ class TestMain(unittest.TestCase):
         # ETANT DONNE un lecteur ayant détecté un badge non bloqué
         lecteur = LecteurFake()
         lecteur.simuler_presentation_badge()
+        log = LogSpy()
         # ET une porte lui étant liée
         porte = PorteSpy()
-        moteur = MoteurOuverture(porte)
+        moteur = MoteurOuverture(log, porte)
         # QUAND le moteur d'ouverture interroge ce lecteur
         moteur.interroger([lecteur])
         # ALORS cette porte ne s'ouvre pas
-        self.assertEqual('ok', moteur.log[-1].statut)
+        self.assertEqual('ok', moteur._logs.log[-1]['statut'])
