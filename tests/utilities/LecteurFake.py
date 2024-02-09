@@ -23,3 +23,6 @@ class LecteurFake(ILecteur):
 
     def bloquer(self):
         self._badge_bloque = True
+
+    def debloquer(self):
+        self._badge_bloque = False
