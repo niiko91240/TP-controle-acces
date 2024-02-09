@@ -66,3 +66,16 @@ class TestMain(unittest.TestCase):
         # ALORS ces portes s'ouvrent
         self.assertEqual(1, porte1.nb_appels_methode_ouvrir)
         self.assertEqual(1, porte2.nb_appels_methode_ouvrir)
+
+    def test_cas_plusieurs_lecteurs(self):
+        # ETANT DONNE deux lecteurs ayant detecté un badge
+        lecteur1 = LecteurFake()
+        lecteur2 = LecteurFake()
+        lecteur2.simuler_presentation_badge()
+        # ET deux portes lui étant liées
+        porte = PorteSpy()
+        # QUAND le moteur d'ouverture interroge deux fois ce lecteur
+        moteur = MoteurOuverture(porte)
+        moteur.interroger([lecteur1, lecteur2])
+        # ALORS ces portes s'ouvrent
+        self.assertEqual(1, porte.nb_appels_methode_ouvrir)
